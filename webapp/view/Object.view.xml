@@ -1,0 +1,157 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" controllerName="cmpc.controller.Object">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="Detalle" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}" titleLevel="H1">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{nombre}" number="{ parts: [ {path: 'monto'}, {path: 'moneda'} ], formatter: '.formatter.numberUnit' }" numberUnit="{moneda}" numberState="{path: 'monto', formatter: '.formatter.priceState' }">
+				<attributes>
+					<ObjectAttribute id="__attribute32" title="Creado" text="{fecha_crea}"/>
+					<ObjectAttribute xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__attribute32_copy" text="Resposable: {usuario}"/>
+				</attributes>
+			</ObjectHeader>
+			<ObjectListItem type="Active" id="__item0" title="HAS: {hoja}">
+				<attributes>
+					<ObjectAttribute xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__attribute30_copy" text="Orden de compra: {po_n}"/>
+					<ObjectAttribute text="Código Proveedor: {cuenta}" id="__attribute30"/>
+					<ObjectAttribute text="Código Liberación: {cod}" id="__attribute13"/>
+				</attributes>
+			</ObjectListItem>
+			<Table xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" noDataText="No existe detalle para servicio" id="table3" items="{ path: '/TiHasDetalleSet'}" headerText="Detalle Servicio" growing="true">
+				<items>
+					<ColumnListItem id="__item4">
+						<cells>
+							<Text text="{EXT_LINE}" id="__text21"/>
+							<Text text="{SERVICE}" id="__text22"/>
+							<Text text="{DESCRIP}" id="__text31"/>
+							<Text text="{QUANTITY}" id="__text24"/>
+							<Text text="{BASE_UOM}" id="__text25"/>
+							<ObjectNumber number="{ parts: [ {path: 'NET_VALUE'}, {path: 'WAERS'} ], formatter: '.formatter.numberUnit' }" state="{path: 'NET_VALUE', formatter: '.formatter.priceState' }" textAlign="Right"/>
+							<Text text="{WAERS}" id="__text30"/>
+							<Text text="{COSTCENTER}" id="__text28"/>
+							<Text text="{GL_ACCOUNT}" id="__text27"/>
+							<Text text="{PROFIT_CTR}" id="__text29"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="__column6" demandPopin="true" minScreenWidth="500px">
+						<header>
+							<Label text="{i18n>COL14}" id="__label6"/>
+						</header>
+					</Column>
+					<Column id="__column7" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Num Servicio" id="__label7"/>
+						</header>
+					</Column>
+					<Column id="__column8" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="{i18n>COL15}" id="__label8"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Cantidad" id="__label8_copy"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy2" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="UM" id="__label8_copy2"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column88_copy44" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Precio Bruto" id="__label88_copy44"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy4" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Moneda" id="__label8_copy4"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy5" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Centro Costo" id="__label8_copy5"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy6" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Cuenta de Mayor" id="__label8_copy6"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column8_copy7" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Centro de Beneficio" id="__label8_copy7"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+			<Table noDataText="No se ha liberado el documento" id="table2" items="{ path: '/TiHasReleaseSet'}" headerText="{i18n>COL17}">
+				<items>
+					<ColumnListItem id="__item1">
+						<cells>
+							<Text id="__text9" text="{hoja}"/>
+							<ObjectStatus xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" id="__status21" icon="{icono}"/>
+							<Text text="{MESSAGE}" id="__text11"/></cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="__column0" demandPopin="true" hAlign="Left">
+						<header>
+							<Label text="Hoja" id="__label0"/>
+						</header>
+					</Column>
+					<Column id="__column1" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader" width="50px">
+						<header>
+							<Label id="__label1"/>
+						</header>
+					</Column>
+					<Column id="__column2" demandPopin="true" hAlign="Left" minScreenWidth="500px" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Resultado" id="__label2"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+			<Table noDataText="Sin anexos" id="__tblAnexos" items="{Anexos>/Datos}" width="auto" headerText="Anexos" headerDesign="Plain" fixedLayout="false">
+				<items>
+					<ColumnListItem>
+						<cells>
+							<core:Icon src="{Anexos>Icono}" tooltip="{Anexos>Extension}"/>
+							<ObjectAttribute text="{Anexos>NombreArchivo}" active="true" press="onObtenerAnexo"/>
+							<Text text="{Anexos>Creador}"/>
+							<Text text="{Anexos>FechaCreacion}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column demandPopin="true" hAlign="Left" minScreenWidth="Tablet" width="10px">
+						<header>
+							<Label text=""/>
+						</header>
+					</Column>
+					<Column demandPopin="true" hAlign="Left" minScreenWidth="Tablet">
+						<header>
+							<Label text="Anexo"/>
+						</header>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<header>
+							<Label text="Usuario creador"/>
+						</header>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+						<header>
+							<Label text="{i18n>COL16}"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+			<Input width="5px" id="input1" fieldWidth="" visible="false"/>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress" visible="false"/>
+		</semantic:sendEmailAction>
+		<semantic:customFooterContent>
+			<Button text="Liberar" width="100px" id="__button0" icon="sap-icon://accept" type="Accept" press="liberar"/>
+		</semantic:customFooterContent>
+	</semantic:FullscreenPage>
+</mvc:View>

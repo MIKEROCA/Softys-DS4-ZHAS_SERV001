@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: cmpc
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: CS_Softys
+          url: http://softys.com:8000/
+          client: '400'
+        app:
+          name: ZHAS_SERV001
+          description: HAS - Liberación de documentos
+          package: ZFIORI
+          transport: DS4K905183
+        exclude:
+          - /test/
